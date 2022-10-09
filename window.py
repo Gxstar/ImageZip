@@ -2,13 +2,22 @@ import sys
 
 from PySide6.QtCore import QFile, Slot
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtWidgets import QMessageBox
+from PySide6.QtWidgets import QMessageBox, QFileDialog, QMainWindow
 
 
 # 槽函数
 def sayhello():
     msgbox = QMessageBox()
     msgbox.setText("Hello world")
+    msgbox.setStandardButtons(QMessageBox.Ok)
+    ret = msgbox.exec()
+
+
+def importimage():
+    FileDirectory = QFileDialog.getOpenFileName(QMainWindow(), "选择文件")
+    print(FileDirectory)
+    msgbox = QMessageBox()
+    msgbox.setText(FileDirectory[0])
     msgbox.setStandardButtons(QMessageBox.Ok)
     ret = msgbox.exec()
 
@@ -27,4 +36,5 @@ class Window:
             sys.exit(-1)
 
         # 信号处理
-        self.ui.helloButton.clicked.connect(sayhello)
+        self.ui.importButton.clicked.connect(importimage)
+        self.ui.zipButton.clicked.connect(sayhello)
