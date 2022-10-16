@@ -1,6 +1,7 @@
 import sys
 
 from PySide6.QtCore import QFile, Slot
+from PySide6.QtGui import QPixmap
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QMessageBox, QFileDialog, QMainWindow
 
@@ -13,13 +14,10 @@ def sayhello():
     ret = msgbox.exec()
 
 
-def importimage():
-    FileDirectory = QFileDialog.getOpenFileName(QMainWindow(), "选择文件")
-    print(FileDirectory)
-    msgbox = QMessageBox()
-    msgbox.setText(FileDirectory[0])
-    msgbox.setStandardButtons(QMessageBox.Ok)
-    ret = msgbox.exec()
+def importimage(t):
+    path = QFileDialog.getOpenFileName(QMainWindow(), "选择文件", "./", "Image files (*.png *.jpg)")[0]
+    pix = QPixmap(path)
+    t.ui.picture.setPixmap(pix)
 
 
 class Window:
@@ -36,5 +34,5 @@ class Window:
             sys.exit(-1)
 
         # 信号处理
-        self.ui.importButton.clicked.connect(importimage)
+        self.ui.importButton.clicked.connect(lambda: importimage(self))
         self.ui.zipButton.clicked.connect(sayhello)
