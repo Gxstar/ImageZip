@@ -92,7 +92,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_2">
+             <widget class="QLineEdit" name="theight">
               <property name="maximumSize">
                <size>
                 <width>61</width>
@@ -134,7 +134,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_3">
+             <widget class="QLineEdit" name="twidth">
               <property name="maximumSize">
                <size>
                 <width>61</width>
@@ -163,7 +163,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit">
+             <widget class="QLineEdit" name="tsize">
               <property name="minimumSize">
                <size>
                 <width>60</width>

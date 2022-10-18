@@ -1,15 +1,15 @@
 import sys
 
-from PySide6.QtCore import QFile, Slot
+from PySide6.QtCore import QFile
 from PySide6.QtGui import QPixmap
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QMessageBox, QFileDialog, QMainWindow
 
 
 # 槽函数
-def sayhello():
+def sayhello(t):
     msgbox = QMessageBox()
-    msgbox.setText("Hello world")
+    msgbox.setText(t.ui.theight.text())
     msgbox.setStandardButtons(QMessageBox.Ok)
     ret = msgbox.exec()
 
@@ -35,4 +35,4 @@ class Window:
 
         # 信号处理
         self.ui.importButton.clicked.connect(lambda: importimage(self))
-        self.ui.zipButton.clicked.connect(sayhello)
+        self.ui.zipButton.clicked.connect(lambda: sayhello(self))
