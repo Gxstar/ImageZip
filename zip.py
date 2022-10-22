@@ -1,4 +1,4 @@
-import os
+from os.path import getsize
 from PIL import Image
 from PIL import ImageFile
 
@@ -19,11 +19,9 @@ def image_zip(file: str, out_file: str, t_h: int, t_w: int, t_size: int, t_dpi: 
     else:
         img.save(out_file, quality=quality)
     if t_size == 0:
-        t_size = os.path.getsize(out_file) // 1024
-    o_size = os.path.getsize(out_file) // 1024  # 返回文件大小，单位KB
-    print(f'源文件大小为{o_size}KB，预期压缩到{t_size}KB。')
+        t_size = getsize(out_file) // 1024
+    o_size = getsize(out_file) // 1024  # 返回文件大小，单位KB
     if o_size <= t_size:
-        print(f'已达到目标大小。')
         img.convert('RGB')
         if t_dpi != 0:
             img.save(out_file, dpi=(t_dpi, t_dpi), quality=quality)
@@ -39,6 +37,5 @@ def image_zip(file: str, out_file: str, t_h: int, t_w: int, t_size: int, t_dpi: 
         if quality - step < 0:
             break
         quality -= step
-        o_size = os.path.getsize(out_file) // 1024
-    print(f'文件大小：{o_size}KB')
+        o_size = getsize(out_file) // 1024
     return 1

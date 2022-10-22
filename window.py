@@ -1,4 +1,5 @@
-import sys, time
+from sys import exit
+from time import sleep
 import zip
 
 from PySide6 import QtGui
@@ -18,7 +19,7 @@ class Window:
         self.ui = QUiLoader().load(qfile)
         if not self.ui:
             print(QUiLoader().errorString())
-            sys.exit(-1)
+            exit(-1)
 
         self.ui.setWindowTitle('图片压缩')
         self.ui.theight.setValidator(QtGui.QIntValidator(0, 25000))
@@ -55,7 +56,7 @@ class Window:
                     size = int(self.ui.tsize.text())
                     dpi = int(self.ui.tdpi.text())
                     code = zip.image_zip(file, out_file, height, width, size, dpi)
-                    time.sleep(1)
+                    sleep(1)
                 QMessageBox.information(self.ui, "完成", "压缩完成，请在目标目录查看文件！")
 
         # 信号处理
