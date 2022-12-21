@@ -7,7 +7,8 @@ if __name__ == "__main__":
     app = QApplication(argv)
     app.setStyle("Fusion")
     app.setWindowIcon(QIcon("fav.ico"))
+
     # app.setStyle(QStyleFactory.create("Fusion"))  # 设置主题风格
     w = Window()
-    w.ui.show()
+    w.show()
     exit(app.exec())
